@@ -49,12 +49,66 @@
         color: #40FF33;
 	border-bottom: 1px solid #40FF33;
       }
+	        audio {
+      display: block;
+      width: 500px;
+      height: 200px;
+      background-color: black;
+      color: white;
+    }
+
+    audio::-webkit-media-controls-panel {
+      background-color: black;
+    }
+
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-pause-button {
+      filter: brightness(0) invert(1);
+    }
+
+    audio::-webkit-media-controls-timeline,
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+      filter: brightness(0) invert(1);
+	  font-weight: bold;
+    }
+    
+    audio::-webkit-media-controls-mute-button,
+    audio::-webkit-media-controls-volume-slider,
+    audio::-webkit-media-controls-volume-slider-container,
+    audio::-webkit-media-controls-volume-slider-thumb {
+      filter: brightness(0) invert(1);
+    }
     </style>
 
     <script>
         window.onbeforeunload = function () {
           window.scrollTo(0, 0);
         }
+	    
+	    window.onload = function() {
+      var audioFiles = [
+        'mp3/1.opus',
+        'mp3/2.opus',
+        'mp3/3.opus',
+        'mp3/4.opus',
+        'mp3/5.opus',
+        'mp3/6.opus',
+        'mp3/7.opus',
+        'mp3/8.opus',
+        'mp3/9.opus',
+      ];
+
+      var randomIndex = Math.floor(Math.random() * audioFiles.length);
+      var randomAudio = audioFiles[randomIndex];
+
+      var audio = document.createElement('audio');
+      audio.src = randomAudio;
+      audio.controls = true;
+
+      audio.play();
+      document.getElementById('audioContainer').appendChild(audio);
+    };
     </script>
 
 
@@ -92,7 +146,7 @@ WN === SCROLL DOWN === SCROLL DOWN === SCROLL DOWN === SCROLL DOWN === SCROLL DO
 █████████████████▓▓▓▓▓▓██████████████▓▓▓▓▓████▓██▄██████▀▀▄▄  ▄██████▀▀▄▄▓▓▓▓▓█
 ███████████████████▓▓████████████████████▀▀█▄█▓█████▀▀▄▄█████████▀▀▄▄▓▓▓▓▓███▀▀
 ████████████████████▓█████▀▀█▄███████▀█▄▄█████████▄████████████▄█████████▀▀▄▄██
-████████████████████████▄▄███████████████████████████████████████████▀█▄▄██████
+██████████████████████<div id="audioContainer"></div>██▄▄███████████████████████████████████████████▀█▄▄██████
 ██████████████████▀▀▄▄█████████████████████████████████████▓▓▓▓▓▓██████████████
 ██████████████▀▀▄▄▓▓▓██████████████▀▀██████████████████▓▓▓▓▓▓██████████████████
 █████████▀▀███▓▓▓▓▓█▀██████████████▌ ▄▄▄  ▀▀▀▀▀████████████▓███████████████████
